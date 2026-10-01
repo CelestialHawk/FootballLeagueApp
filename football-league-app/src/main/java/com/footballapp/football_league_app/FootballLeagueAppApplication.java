@@ -24,6 +24,7 @@ public class FootballLeagueAppApplication {
 
             if (teamRepository.count() == 0) {
                 teamRepository.save(new Team("Cardiff City"));
+                
             }
         };
     }

@@ -18,7 +18,7 @@ public class FootballLeagueAppApplication {
 
     //run database input on boot to test connection to database and test repository
     //confirmed works
-    @Bean
+    /* @Bean
     CommandLineRunner loadData(TeamRepository teamRepository) {
         return args -> {
 
@@ -27,5 +27,5 @@ public class FootballLeagueAppApplication {
                 
             }
         };
-    }
+    } */
 }

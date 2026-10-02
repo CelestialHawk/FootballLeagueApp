@@ -10,13 +10,13 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import com.footballapp.football_league_app.entities.Team;
 import com.footballapp.football_league_app.repositories.TeamRepository;
 
-import com.footballapp.teams.GetTeamsRequest;
-import com.footballapp.teams.GetTeamsResponse;
+import com.footballapp.league.GetTeamsRequest;
+import com.footballapp.league.GetTeamsResponse;
 
 @Endpoint
 public class TeamEndpoint {
 
-    private static final String NAMESPACE_URI = "http://footballapp.com/teams";
+    private static final String NAMESPACE_URI = "http://footballapp.com/league";
 
     private final TeamRepository teamRepository;
 
@@ -39,8 +39,8 @@ public class TeamEndpoint {
 
         // Map the retrieved teams to the SOAP response
         for (Team team : teams) {
-            com.footballapp.teams.Team soapTeam =
-                    new com.footballapp.teams.Team();
+            com.footballapp.league.Team soapTeam =
+                    new com.footballapp.league.Team();
 
             soapTeam.setId(team.getId());
             soapTeam.setName(team.getName());

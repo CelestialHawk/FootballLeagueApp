@@ -15,12 +15,12 @@ public class App {
                 <?xml version="1.0" encoding="UTF-8"?>
                 <soapenv:Envelope
                     xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-                    xmlns:team="http://footballapp.com/teams">
+                    xmlns:league="http://footballapp.com/league">
 
                     <soapenv:Header/>
 
                     <soapenv:Body>
-                        <team:getTeamsRequest/>
+                        <league:getTeamsRequest/>
                     </soapenv:Body>
 
                 </soapenv:Envelope>

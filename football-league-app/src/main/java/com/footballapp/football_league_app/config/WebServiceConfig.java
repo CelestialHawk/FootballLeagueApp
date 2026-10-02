@@ -28,14 +28,14 @@ public class WebServiceConfig {
     }
 
     // Define WSDL for teams
-    @Bean(name = "teams")
+    @Bean(name = "league")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema teamsSchema) {
 
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
 
-        wsdl.setPortTypeName("TeamsPort");
+        wsdl.setPortTypeName("LeaguePort");
         wsdl.setLocationUri("/ws");
-        wsdl.setTargetNamespace("http://footballapp.com/teams");
+        wsdl.setTargetNamespace("http://footballapp.com/league");
         wsdl.setSchema(teamsSchema);
 
         return wsdl;
@@ -46,7 +46,7 @@ public class WebServiceConfig {
     public XsdSchema teamsSchema() {
 
         return new SimpleXsdSchema(
-                new org.springframework.core.io.ClassPathResource("xsd/teams.xsd")
+                new org.springframework.core.io.ClassPathResource("xsd/league.xsd")
         );
     }
 }

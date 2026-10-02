@@ -2,8 +2,8 @@
 
 <xs:schema
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://footballapp.com/teams"
-    xmlns:tns="http://footballapp.com/teams"
+    targetNamespace="http://footballapp.com/league"
+    xmlns:tns="http://footballapp.com/league"
     elementFormDefault="qualified">
 
     <xs:element name="getTeamsRequest">
@@ -17,6 +17,25 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="team" type="tns:team" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addMatchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="homeTeamId" type="xs:long"/>
+                <xs:element name="awayTeamId" type="xs:long"/>
+                <xs:element name="homeScore" type="xs:int"/>
+                <xs:element name="awayScore" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addMatchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="matchId" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -9,6 +9,8 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
+        // SOAP request to retrieve all teams
+        // Placeholder 
         String soapRequest = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <soapenv:Envelope

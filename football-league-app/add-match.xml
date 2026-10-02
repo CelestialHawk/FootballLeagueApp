@@ -1,0 +1,19 @@
+// Test SOAP request to add match result 
+// Placeholder
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:league="http://footballapp.com/league">
+
+    <soapenv:Header/>
+
+    <soapenv:Body>
+        <league:addMatchRequest>
+            <league:homeTeamId>1</league:homeTeamId>
+            <league:awayTeamId>2</league:awayTeamId>
+            <league:homeScore>2</league:homeScore>
+            <league:awayScore>1</league:awayScore>
+        </league:addMatchRequest>
+    </soapenv:Body>
+
+</soapenv:Envelope>

@@ -1,16 +1,24 @@
 package football.league.client;
 
-import java.net.URI;
+/* import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.http.HttpResponse; */
+import java.util.Scanner;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
 
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Enter something: ");
+            String input = scanner.nextLine();
+            System.out.println("You entered: " + input);
+        }
+
         // SOAP request to retrieve all teams
         // Placeholder 
+        /*
         String soapRequest = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <soapenv:Envelope
@@ -39,5 +47,6 @@ public class App {
 
         System.out.println("HTTP Status: " + response.statusCode());
         System.out.println(response.body());
+        */
     }
 }

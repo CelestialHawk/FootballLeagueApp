@@ -4,6 +4,17 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 public class LeagueClient {
 
@@ -14,7 +25,7 @@ public class LeagueClient {
     }
     
     // Get all teams via SOAP request to Spring
-    public String getTeams() throws Exception {
+    public List<Team> getTeams() throws Exception {
 
         String soapRequest = """
                 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,7 +54,31 @@ public class LeagueClient {
                         HttpResponse.BodyHandlers.ofString()
                 );
 
-        return response.body();
+        DocumentBuilderFactory factory = 
+                DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        DocumentBuilder builder = 
+                factory.newDocumentBuilder();
+        Document document = 
+                builder.parse(
+                    new InputSource(
+                        new StringReader(response.body()
+                    )
+                )
+            );
+        NodeList teamNodes = 
+                document.getElementsByTagNameNS(
+                    "http://footballapp.com/league", 
+                    "team"
+                );
+        List<Team> teams = new ArrayList<>();
+        for (int i = 0; i < teamNodes.getLength(); i++) {
+            Element teamElement = (Element) teamNodes.item(i);
+            long id = Long.parseLong(teamElement.getElementsByTagNameNS("http://footballapp.com/league", "id").item(0).getTextContent());
+            String name = teamElement.getElementsByTagNameNS("http://footballapp.com/league", "name").item(0).getTextContent();
+            teams.add(new Team(id, name));
+        }
+        return teams;
     }
 
     // Add a match via SOAP request to Spring

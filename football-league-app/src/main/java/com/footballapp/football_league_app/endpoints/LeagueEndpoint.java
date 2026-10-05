@@ -50,7 +50,7 @@ public class LeagueEndpoint {
             soapTeam.setDraws(entry.getDraws());
             soapTeam.setLosses(entry.getLosses());
             soapTeam.setPoints(entry.getPoints());
-
+            soapTeam.setPosition(entry.getPosition());
             response.getTeam().add(soapTeam);
         }
 

@@ -68,6 +68,13 @@ public class LeagueService {
             table.add(entry);
         }
 
-        return table;
+        table.sort((a, b) -> 
+            Integer.compare(b.getPoints(), a.getPoints()));
+        
+            for (int i = 0; i < table.size(); i++) {
+                table.get(i).setPosition(i + 1);
+            }
+            
+    return table;
     }
 }

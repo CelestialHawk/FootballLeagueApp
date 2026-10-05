@@ -59,6 +59,7 @@
                         <xs:element name="draws" type="xs:int"/>
                         <xs:element name="losses" type="xs:int"/>
                         <xs:element name="points" type="xs:int"/>
+                        <xs:element name="position" type="xs:int"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>

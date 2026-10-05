@@ -8,6 +8,7 @@ public class LeagueTable {
     private int draws;
     private int losses;
     private int points;
+    private int poisition;
 
     public LeagueTable(Team team) {
         this.team = team;
@@ -37,6 +38,10 @@ public class LeagueTable {
         return points;
     }
 
+    public int getPosition() {
+        return poisition;
+    }
+
     public void addWin() {
         played++;
         wins++;
@@ -52,5 +57,9 @@ public class LeagueTable {
     public void addLoss() {
         played++;
         losses++;
+    }
+
+    public void setPosition(int position) {
+        this.poisition = position;
     }
 }

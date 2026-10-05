@@ -1,1 +1,2 @@
-
+Run football-league-app (Spring Server) first via .\gradlew bootRun
+Then run football-league-client (CLI) second via .\gradlew.bat :app:run --console=plain (avoids gradle console interference)

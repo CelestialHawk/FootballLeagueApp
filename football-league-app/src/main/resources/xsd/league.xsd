@@ -40,6 +40,32 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getLeagueTableRequest">
+    <xs:complexType>
+        <xs:sequence/>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="getLeagueTableResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="team" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="played" type="xs:int"/>
+                        <xs:element name="wins" type="xs:int"/>
+                        <xs:element name="draws" type="xs:int"/>
+                        <xs:element name="losses" type="xs:int"/>
+                        <xs:element name="points" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
     <xs:complexType name="team">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>

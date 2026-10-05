@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:league="http://footballapp.com/league">
+
+    <soapenv:Header/>
+
+    <soapenv:Body>
+        <league:getLeagueTableRequest/>
+    </soapenv:Body>
+
+</soapenv:Envelope>

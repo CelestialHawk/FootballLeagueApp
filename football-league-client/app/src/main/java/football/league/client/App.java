@@ -15,6 +15,7 @@ public class App {
 
                 System.out.println();
                 System.out.println("======= Championship League Client =======");
+                System.out.println();
                 System.out.println("Available commands:");
                 System.out.println("1. Add Match Information");
                 System.out.println("2. Exit");
@@ -84,4 +85,4 @@ public class App {
             }
         }
     }
-}
+} 

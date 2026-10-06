@@ -43,7 +43,7 @@ public class LeagueClient {
                 """;
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/ws"))
+                .uri(URI.create("http://16.170.40.6:8080/ws"))
                 .header("Content-Type", "text/xml; charset=utf-8")
                 .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
                 .build();
@@ -114,7 +114,7 @@ public class LeagueClient {
                 );
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/ws"))
+                .uri(URI.create("http://16.170.40.6:8080/ws"))
                 .header("Content-Type", "text/xml; charset=utf-8")
                 .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
                 .build();

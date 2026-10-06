@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" th:href="@{/style.css}">
     <title>Championship Table</title>
 </head>
 
 <body>
-
+<div class="container">
     <h1>Championship Table</h1>
 
     <table>
@@ -27,10 +28,12 @@
 
                 <td th:text="${entry.position}"></td>
 
-                <a th:href="@{/team/{id}(id=${entry.team.id})}"
-                th:text="${entry.team.name}">
-                </a>
-                
+                <td>
+                    <a th:href="@{/team/{id}(id=${entry.team.id})}"
+                    th:text="${entry.team.name}">
+                    </a>
+                </td>
+
                 <td th:text="${entry.played}"></td>
 
                 <td th:text="${entry.wins}"></td>
@@ -44,7 +47,7 @@
             </tr>
         </tbody>
     </table>
-
+</div>
 </body>
 
 </html>

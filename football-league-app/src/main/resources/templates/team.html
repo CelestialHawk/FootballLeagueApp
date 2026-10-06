@@ -2,48 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" th:href="@{/style.css}">
     <title>Team Matches</title>
 </head>
 
 <body>
 
-    <h1>Last 10 Matches</h1>
+    <div class="team-page">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Match</th>
-                <th>Score</th>
-                <th>Outcome</th>
-            </tr>
-        </thead>
+        <h1>Last 10 Matches</h1>
 
-        <tbody>
-            <tr th:each="teammatch : ${matches}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Match</th>
+                    <th>Score</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
 
-                <td>
-                    <span th:text="${teammatch.match.homeTeam.name}"></span>
-                    vs
-                    <span th:text="${teammatch.match.awayTeam.name}"></span>
-                </td>
+            <tbody>
+                <tr th:each="teammatch : ${matches}">
 
-                <td>
-                    <span th:text="${teammatch.match.homeScore}"></span>
-                    -
-                    <span th:text="${teammatch.match.awayScore}"></span>
-                </td>
+                    <td>
+                        <span th:text="${teammatch.match.homeTeam.name}"></span>
+                        <strong> vs </strong>
+                        <span th:text="${teammatch.match.awayTeam.name}"></span>
+                    </td>
 
-                <td>
-                    <span th:text="${teammatch.result}"></span>
-                </td>
+                    <td>
+                        <span th:text="${teammatch.match.homeScore}"></span>
+                        -
+                        <span th:text="${teammatch.match.awayScore}"></span>
+                    </td>
 
-            </tr>
-        </tbody>
-    </table>
+                    <td
+                        class="result"
+                        th:classappend="${teammatch.result == 'WIN'} ? ' win' :
+                                        (${teammatch.result == 'DRAW'} ? ' draw' : ' loss')"
+                        th:text="${teammatch.result}">
+                    </td>
 
-    <br>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="/league">Back to league table</a>
+        <a class="back-link" href="/league">
+            ← Back to league table
+        </a>
+
+    </div>
 
 </body>
 

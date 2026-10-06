@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5f8;
+    color: #1b2a4a;
+    margin: 0;
+}
+
+/* Shared page layout */
+
+.container,
+.team-page {
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.team-page {
+    max-width: 650px;
+}
+
+/* Shared page heading */
+
+.container h1,
+.team-page h1 {
+    background: #14213d;
+    color: white;
+    padding: 18px 22px;
+    margin: 0 0 20px 0;
+    border-bottom: 4px solid #e30613;
+    font-size: 24px;
+}
+
+/* Tables */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Table headings */
+
+th {
+    background: #1b2a4a;
+    color: white;
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 14px;
+}
+
+/* Table cells */
+
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table hover */
+
+tbody tr:hover {
+    background: #f1f4f8;
+}
+
+/* Team links */
+
+a {
+    color: #14213d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #e30613;
+}
+
+/* Team page */
+
+.team-page table {
+    margin-top: 0;
+}
+
+.team-page td,
+.team-page th {
+    padding: 11px 14px;
+}
+
+/* Results */
+
+.result {
+    font-weight: bold;
+    text-align: center;
+}
+
+.win {
+    color: #16803c;
+}
+
+.draw {
+    color: #d08a00;
+}
+
+.loss {
+    color: #d62828;
+}
+
+/* Back link */
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #14213d;
+}
+
+.back-link:hover {
+    color: #e30613;
+}

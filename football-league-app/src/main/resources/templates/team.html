@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Team Matches</title>
+</head>
+
+<body>
+
+    <h1>Last 10 Matches</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Score</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="teammatch : ${matches}">
+
+                <td>
+                    <span th:text="${teammatch.match.homeTeam.name}"></span>
+                    vs
+                    <span th:text="${teammatch.match.awayTeam.name}"></span>
+                </td>
+
+                <td>
+                    <span th:text="${teammatch.match.homeScore}"></span>
+                    -
+                    <span th:text="${teammatch.match.awayScore}"></span>
+                </td>
+
+                <td>
+                    <span th:text="${teammatch.result}"></span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+    <a href="/league">Back to league table</a>
+
+</body>
+
+</html>

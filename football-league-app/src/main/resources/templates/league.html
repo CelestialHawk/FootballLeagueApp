@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Championship Table</title>
+</head>
+
+<body>
+
+    <h1>Championship Table</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Team</th>
+                <th>Played</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="entry : ${table}">
+
+                <td th:text="${entry.position}"></td>
+
+                <td th:text="${entry.team.name}"></td>
+
+                <td th:text="${entry.played}"></td>
+
+                <td th:text="${entry.wins}"></td>
+
+                <td th:text="${entry.draws}"></td>
+
+                <td th:text="${entry.losses}"></td>
+
+                <td th:text="${entry.points}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

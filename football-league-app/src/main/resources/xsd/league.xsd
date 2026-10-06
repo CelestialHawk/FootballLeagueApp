@@ -67,6 +67,34 @@
     </xs:complexType>
 </xs:element>
 
+<xs:element name="getTeamMatchesRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="teamId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="getTeamMatchesResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="match" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element name="homeTeamId" type="xs:long"/>
+                        <xs:element name="homeTeamName" type="xs:string"/>
+                        <xs:element name="awayTeamId" type="xs:long"/>
+                        <xs:element name="awayTeamName" type="xs:string"/>
+                        <xs:element name="homeScore" type="xs:int"/>
+                        <xs:element name="awayScore" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
     <xs:complexType name="team">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>

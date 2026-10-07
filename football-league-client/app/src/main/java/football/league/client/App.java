@@ -19,6 +19,8 @@ public class App {
                 System.out.println("Available commands:");
                 System.out.println("1. Add Match Information");
                 System.out.println("2. Retrieve Owner Information");
+                System.out.println("3. Add a Team Owner");
+                System.out.println("4. Exit");
                 System.out.print("Enter command: ");
                 String command = scanner.nextLine();
 
@@ -94,6 +96,37 @@ public class App {
                          break; 
 
                     case "3":
+                        List<Team> ownerTeams = leagueClient.getTeams();
+
+                        System.out.println();
+                        System.out.println("Select a team to add an owner:");
+
+                        for (int i = 0; i < ownerTeams.size(); i++) {
+                            System.out.println(
+                                    (i + 1) + ". " + ownerTeams.get(i).getName()
+                            );
+                        }
+
+                        System.out.print("Team: ");
+                        int teamChoice = Integer.parseInt(scanner.nextLine());
+
+                        System.out.print("Owner name: ");
+                        String ownerName = scanner.nextLine();
+
+                        Team selectedTeam = ownerTeams.get(teamChoice - 1);
+
+                        String addOwnerResponse = leagueClient.addOwner(
+                                selectedTeam.getId(),
+                                ownerName   
+                        );
+
+                        System.out.println();
+                        System.out.println("Owner added successfully.");
+                        System.out.println(addOwnerResponse);
+
+                        break;
+
+                    case "4":
                         System.out.println("Exiting...");
                         return;
 

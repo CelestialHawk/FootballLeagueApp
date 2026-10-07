@@ -8,3 +8,5 @@ export DB_PASSWORD='PASSWORD'
 
 Run EC2 Spring app via java -jar football-league-app-0.0.1-SNAPSHOT.jar
 CLI remains local via gradle (SOAP communicates with new AWS IP)
+
+Use IP 16.170.40.6 in LeagueClient.java for Deployment connection, and localhost for local development

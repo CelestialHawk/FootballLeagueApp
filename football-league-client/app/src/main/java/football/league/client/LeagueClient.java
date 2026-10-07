@@ -43,7 +43,7 @@ public class LeagueClient {
                 """;
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://16.170.40.6:8080/ws")) //Use AWS IP 16.170.40.6
+                .uri(URI.create("http://localhost:8080/ws")) //Use AWS IP 16.170.40.6
                 .header("Content-Type", "text/xml; charset=utf-8")
                 .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
                 .build();
@@ -114,7 +114,7 @@ public class LeagueClient {
                 );
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://16.170.40.6:8080/ws")) //Use AWS IP 16.170.40.6
+                .uri(URI.create("http://localhost:8080/ws")) //Use AWS IP 16.170.40.6
                 .header("Content-Type", "text/xml; charset=utf-8")
                 .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
                 .build();
@@ -149,7 +149,7 @@ public class LeagueClient {
                 """.formatted(teamId);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://16.170.40.6:8080/ws"))
+                .uri(URI.create("http://localhost:8080/ws")) //Use AWS IP 16.170.40.6
                 .header("Content-Type", "text/xml; charset=utf-8")
                 .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
                 .build();
@@ -163,4 +163,39 @@ public class LeagueClient {
         return response.body();
     }
 
+    public String addOwner(long teamId, String name) throws Exception {
+
+        String soapRequest = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <soapenv:Envelope
+                    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                    xmlns:league="http://footballapp.com/league">
+
+                    <soapenv:Header/>
+
+                    <soapenv:Body>
+
+                        <league:addOwnerRequest>
+                            <league:name>%s</league:name>
+                            <league:teamId>%d</league:teamId>
+                        </league:addOwnerRequest>
+
+                    </soapenv:Body>
+                </soapenv:Envelope>
+                """.formatted(name, teamId);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/ws")) //Use AWS IP 16.170.40.6
+                .header("Content-Type", "text/xml; charset=utf-8")
+                .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
+                .build();
+
+        HttpResponse<String> response =
+                httpClient.send(
+                        request,
+                        HttpResponse.BodyHandlers.ofString()
+                );
+
+        return response.body();
+    }
 }

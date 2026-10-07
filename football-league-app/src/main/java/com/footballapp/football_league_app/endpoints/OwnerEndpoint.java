@@ -6,10 +6,14 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.footballapp.football_league_app.entities.Owner;
+import com.footballapp.football_league_app.entities.Team;
 import com.footballapp.football_league_app.repositories.OwnerRepository;
+import com.footballapp.football_league_app.repositories.TeamRepository;
 
 import com.footballapp.league.GetOwnerRequest;
 import com.footballapp.league.GetOwnerResponse;
+import com.footballapp.league.AddOwnerRequest;
+import com.footballapp.league.AddOwnerResponse;
 
 @Endpoint
 public class OwnerEndpoint {
@@ -17,9 +21,11 @@ public class OwnerEndpoint {
     private static final String NAMESPACE_URI = "http://footballapp.com/league";
 
     private final OwnerRepository ownerRepository;
+    private final TeamRepository teamRepository;
 
-    public OwnerEndpoint(OwnerRepository ownerRepository) {
+    public OwnerEndpoint(OwnerRepository ownerRepository, TeamRepository teamRepository) {
         this.ownerRepository = ownerRepository;
+        this.teamRepository = teamRepository;
     }
 
     @PayloadRoot(
@@ -45,6 +51,31 @@ public class OwnerEndpoint {
 
             response.setOwner(soapOwner);
         }
+
+        return response;
+    }
+
+    @PayloadRoot(
+    namespace = NAMESPACE_URI,
+    localPart = "addOwnerRequest"
+    )
+    @ResponsePayload
+    public AddOwnerResponse addOwner(
+            @RequestPayload AddOwnerRequest request) {
+
+        Team team = teamRepository
+                .findById(request.getTeamId())
+                .orElseThrow();
+
+        Owner owner = new Owner(
+                request.getName(),
+                team
+        );
+
+        Owner savedOwner = ownerRepository.save(owner);
+
+        AddOwnerResponse response = new AddOwnerResponse();
+        response.setOwnerId(savedOwner.getId());
 
         return response;
     }

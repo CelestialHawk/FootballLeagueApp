@@ -127,4 +127,40 @@ public class LeagueClient {
 
         return response.body();
     }
+
+    public String getOwner(long teamId) throws Exception {
+
+        String soapRequest = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <soapenv:Envelope
+                    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                    xmlns:league="http://footballapp.com/league">
+
+                    <soapenv:Header/>
+
+                    <soapenv:Body>
+
+                        <league:getOwnerRequest>
+                            <league:teamId>%d</league:teamId>
+                        </league:getOwnerRequest>
+
+                    </soapenv:Body>
+                </soapenv:Envelope>
+                """.formatted(teamId);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://16.170.40.6:8080/ws"))
+                .header("Content-Type", "text/xml; charset=utf-8")
+                .POST(HttpRequest.BodyPublishers.ofString(soapRequest))
+                .build();
+
+        HttpResponse<String> response =
+            httpClient.send(
+                    request,
+                    HttpResponse.BodyHandlers.ofString()
+            );
+
+        return response.body();
+    }
+
 }

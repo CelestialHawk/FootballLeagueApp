@@ -5,4 +5,6 @@ import com.footballapp.football_league_app.entities.Owner;
 
 public interface OwnerRepository extends JpaRepository<Owner, Long> {
     
+    public Owner findByTeamId(Long teamId);
+    
 }

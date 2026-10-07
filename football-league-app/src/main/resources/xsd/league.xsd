@@ -128,6 +128,23 @@
     </xs:complexType>
 </xs:element>
 
+<xs:element name="changeOwnerRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="ownerId" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="changeOwnerResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="ownerId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+    
     <xs:complexType name="team">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>

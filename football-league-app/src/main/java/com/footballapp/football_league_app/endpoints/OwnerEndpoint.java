@@ -14,6 +14,8 @@ import com.footballapp.league.GetOwnerRequest;
 import com.footballapp.league.GetOwnerResponse;
 import com.footballapp.league.AddOwnerRequest;
 import com.footballapp.league.AddOwnerResponse;
+import com.footballapp.league.ChangeOwnerRequest;
+import com.footballapp.league.ChangeOwnerResponse;
 
 @Endpoint
 public class OwnerEndpoint {
@@ -75,6 +77,28 @@ public class OwnerEndpoint {
         Owner savedOwner = ownerRepository.save(owner);
 
         AddOwnerResponse response = new AddOwnerResponse();
+        response.setOwnerId(savedOwner.getId());
+
+        return response;
+    }
+
+    @PayloadRoot(
+    namespace = NAMESPACE_URI,
+    localPart = "changeOwnerRequest"
+    )
+    @ResponsePayload
+    public ChangeOwnerResponse changeOwner(
+            @RequestPayload ChangeOwnerRequest request) {
+
+        Owner owner = ownerRepository
+                .findById(request.getOwnerId())
+                .orElseThrow();
+
+        owner.setName(request.getName());
+
+        Owner savedOwner = ownerRepository.save(owner);
+
+        ChangeOwnerResponse response = new ChangeOwnerResponse();
         response.setOwnerId(savedOwner.getId());
 
         return response;

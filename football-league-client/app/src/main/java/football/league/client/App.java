@@ -18,9 +18,8 @@ public class App {
                 System.out.println();
                 System.out.println("Available commands:");
                 System.out.println("1. Add Match Information");
-                System.out.println("2. Retrieve Owner Information");
-                System.out.println("3. Add a Team Owner");
-                System.out.println("4. Exit");
+                System.out.println("2. Owner Dashboard");
+                System.out.println("3. Exit");
                 System.out.print("Enter command: ");
                 String command = scanner.nextLine();
 
@@ -78,55 +77,128 @@ public class App {
                         break;
                     
                     case "2":
-                        List<Team> showTeams = leagueClient.getTeams();
 
-                        System.out.println();
+                        boolean ownerDashboard = true;
 
-                        for (Team team : showTeams) {
-                            System.out.println(team.getId() + ". " + team.getName());
+                        while (ownerDashboard) {
+                            System.out.println();
+                            System.out.println("======= Owner Dashboard =======");
+                            System.out.println();
+                            System.out.println("Available commands:");
+                            System.out.println("1. Get Owner");
+                            System.out.println("2. Add Owner");
+                            System.out.println("3. Change Owner");
+                            System.out.println("4. Back");
+                            System.out.print("Enter command: ");
+
+                            String ownerCommand = scanner.nextLine();
+
+                            switch (ownerCommand) {
+
+                                case "1":
+
+                                    List<Team> showTeams = leagueClient.getTeams();
+
+                                    System.out.println();
+
+                                    for (Team team : showTeams) {
+                                        System.out.println(team.getId() + ". " + team.getName());
+                                    }
+                                    
+                                    System.out.print("Enter team ID: ");
+                                    long teamId = Long.parseLong(scanner.nextLine());
+
+                                    String ownerResponse = leagueClient.getOwner(teamId);
+
+                                    System.out.println();
+                                    System.out.println(ownerResponse);
+                                    break; 
+
+                                case "2":
+
+                                    List<Team> ownerTeams = leagueClient.getTeams();
+
+                                    System.out.println();
+                                    System.out.println("Select a team to add an owner:");
+
+                                    for (int i = 0; i < ownerTeams.size(); i++) {
+                                        System.out.println(
+                                                (i + 1) + ". " + ownerTeams.get(i).getName()
+                                        );
+                                    }
+
+                                    System.out.print("Team: ");
+                                    int teamChoice = Integer.parseInt(scanner.nextLine());
+
+                                    System.out.print("Owner name: ");
+                                    String ownerName = scanner.nextLine();
+
+                                    Team selectedTeam = ownerTeams.get(teamChoice - 1);
+
+                                    String addOwnerResponse = leagueClient.addOwner(
+                                            selectedTeam.getId(),
+                                            ownerName   
+                                    );
+
+                                    System.out.println();
+                                    System.out.println("Owner added successfully.");
+                                    System.out.println(addOwnerResponse);
+
+                                    break;
+
+                                case "3":
+
+                                    List<Team> changeTeams = leagueClient.getTeams();
+
+                                    System.out.println();
+                                    System.out.println("Select team:");
+
+                                    for (int i = 0; i < changeTeams.size(); i++) {
+                                        System.out.println(
+                                                (i + 1) + ". " + changeTeams.get(i).getName()
+                                        );
+                                    }
+
+                                    System.out.print("Team: ");
+                                    int changeTeamChoice =
+                                            Integer.parseInt(scanner.nextLine());
+
+                                    Team changeTeam =
+                                            changeTeams.get(changeTeamChoice - 1);
+
+                                    String ownerResponseId =
+                                            leagueClient.getOwner(changeTeam.getId());
+
+                                    System.out.println();
+                                    System.out.println(ownerResponseId);
+
+                                    System.out.print("Enter new owner name: ");
+                                    String newOwnerName = scanner.nextLine();
+
+                                    long ownerId = leagueClient.getOwnerId(changeTeam.getId());
+
+                                    String changeOwnerResponse = leagueClient.changeOwner(
+                                            ownerId,
+                                            newOwnerName
+                                    );
+
+                                    System.out.println();
+                                    System.out.println("Owner changed successfully.");
+                                    System.out.println(changeOwnerResponse);
+
+                                    break;
+
+                                case "4":
+                                    ownerDashboard = false;
+                                    break;
+
+                                default:
+                                    System.out.println("Invalid command. Please try again.");
+                            }
                         }
-                        
-                        System.out.print("Enter team ID: ");
-                        long teamId = Long.parseLong(scanner.nextLine());
-
-                        String ownerResponse = leagueClient.getOwner(teamId);
-
-                        System.out.println();
-                        System.out.println(ownerResponse);
-                         break; 
-
-                    case "3":
-                        List<Team> ownerTeams = leagueClient.getTeams();
-
-                        System.out.println();
-                        System.out.println("Select a team to add an owner:");
-
-                        for (int i = 0; i < ownerTeams.size(); i++) {
-                            System.out.println(
-                                    (i + 1) + ". " + ownerTeams.get(i).getName()
-                            );
-                        }
-
-                        System.out.print("Team: ");
-                        int teamChoice = Integer.parseInt(scanner.nextLine());
-
-                        System.out.print("Owner name: ");
-                        String ownerName = scanner.nextLine();
-
-                        Team selectedTeam = ownerTeams.get(teamChoice - 1);
-
-                        String addOwnerResponse = leagueClient.addOwner(
-                                selectedTeam.getId(),
-                                ownerName   
-                        );
-
-                        System.out.println();
-                        System.out.println("Owner added successfully.");
-                        System.out.println(addOwnerResponse);
-
                         break;
 
-                    case "4":
+                    case "3":
                         System.out.println("Exiting...");
                         return;
 

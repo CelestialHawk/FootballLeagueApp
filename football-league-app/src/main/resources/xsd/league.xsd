@@ -95,7 +95,30 @@
     </xs:complexType>
 </xs:element>
 
+<xs:element name="getOwnerRequest">
+    <xs:complexType>
+        <xs:sequence>
+        <xs:element name="teamId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+<xs:element name="getOwnerResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="owner" type="tns:owner"/>
+        </xs:sequence>  
+    </xs:complexType>
+</xs:element>
+
     <xs:complexType name="team">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="owner">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
